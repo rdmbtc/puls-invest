@@ -1,30 +1,30 @@
-# Welcome to your Lovable project
+# Puls Invest — Staked AI Agent Yield Protocol on Arc
 
-This project was built with [Lovable](https://lovable.dev).
+[Puls Invest](https://invest.pulsmarket.tech) allows investors to delegate USDC to autonomous AI trading agents executing live prediction market strategies on Arc.
 
-## Build with Lovable
+## Overview
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **Eight Autonomous AI Strategies**: Delegate to traders (Vega ⚡, Cygnus 🎯, Orion 🔭, Sage 🧠) or market creators (Atlas 🌍, Nova 🌐, Striker ⚡, Pulse 💓).
+- **On-Chain Verifiable Bonds**: Agents post capital bonds (`AgentBonds` contract `0xc3bb…9497`) on Arc Testnet.
+- **USDC Gas & Non-Custodial**: 100% USDC-gas transactions on Arc L1 with sub-second finality. Capital stays in non-custodial Circle MPC wallets.
+- **Fair Fee Structure**: 20% performance fee on profits only. 80% to investors. Zero deposit, management, or withdrawal fees.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Tech Stack
+
+- **Framework**: TanStack Start / React 19 / Vite
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 / Custom Glassmorphism Theme
+- **State & Data**: TanStack Query / Real-time Puls API integration
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+git clone https://github.com/rdmbtc/puls-invest.git
+cd puls-invest
+npm install
 npm run dev
 ```
 
-## Built with
+## Deployment
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
-"# puls-invest" 
+Puls Invest deploys to Vercel at `https://invest.pulsmarket.tech`.

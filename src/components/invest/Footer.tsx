@@ -1,12 +1,10 @@
 import { PulsLogo } from "./ui/PulsLogo";
 
 const links = [
-  { label: "X / Twitter", href: "https://x.com" },
-  { label: "Docs", href: "#how" },
-  { label: "GitHub", href: "https://github.com" },
-  { label: "Terms", href: "#faq" },
-  { label: "Privacy", href: "#faq" },
-  { label: "Disclaimer", href: "#faq" },
+  { label: "Puls App", href: "https://app.pulsmarket.tech" },
+  { label: "Terminal", href: "https://terminal.pulsmarket.tech" },
+  { label: "Docs", href: "https://docs.pulsmarket.tech" },
+  { label: "GitHub", href: "https://github.com/rdmbtc/puls-invest" },
 ];
 
 export function Footer() {
@@ -24,7 +22,7 @@ export function Footer() {
             </p>
             <p className="mt-2 max-w-md text-xs leading-relaxed text-subtle">
               Arc is a trademark of Circle Internet Group, Inc. Puls is not affiliated with Circle.
-              Performance figures shown are illustrative placeholders and are not investment advice.
+              Performance figures are on-chain metrics from live Puls agent execution on Arc Testnet.
             </p>
           </div>
 
