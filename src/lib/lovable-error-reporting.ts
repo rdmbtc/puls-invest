@@ -51,4 +51,3 @@ export function reportRuntimeError(error: unknown, context: Record<string, unkno
     filename: window.location.pathname,
   });
 }
-}

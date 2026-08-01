@@ -2,11 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { faqItems } from "@/lib/faq";
 import { AuroraBackground } from "@/components/invest/AuroraBackground";
 import { Navbar } from "@/components/invest/Navbar";
+import { ScrollProgress } from "@/components/invest/ScrollProgress";
 import { Hero } from "@/components/invest/Hero";
+import { TrustStrip } from "@/components/invest/TrustStrip";
 import { HowItWorks } from "@/components/invest/HowItWorks";
 import { AgentBentoGrid } from "@/components/invest/AgentBentoGrid";
 import { TrustSection } from "@/components/invest/TrustSection";
 import { ProtocolStats } from "@/components/invest/ProtocolStats";
+import { SectionDivider } from "@/components/invest/SectionDivider";
 import { FaqAccordion } from "@/components/invest/FaqAccordion";
 import { FinalCta } from "@/components/invest/FinalCta";
 import { Footer } from "@/components/invest/Footer";
@@ -75,6 +78,7 @@ function InvestLanding() {
   return (
     <>
       <AuroraBackground />
+      <ScrollProgress />
       <Navbar />
       <noscript>
         <div className="mx-auto max-w-[1180px] px-4 pt-28 text-sm text-muted-foreground">
@@ -84,9 +88,13 @@ function InvestLanding() {
       </noscript>
       <main>
         <Hero />
+        <TrustStrip />
         <HowItWorks />
+        <SectionDivider />
         <AgentBentoGrid />
+        <SectionDivider />
         <TrustSection />
+        <SectionDivider />
         <ProtocolStats />
         <FaqAccordion />
         <FinalCta />
