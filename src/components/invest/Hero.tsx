@@ -32,19 +32,15 @@ export function Hero() {
           <h1 className="display-tight mt-6 text-[2.6rem] font-bold sm:text-6xl lg:text-[4.25rem]">
             Invest in agents that put{" "}
             <span
-              className="gradient-text relative inline-block italic"
               aria-live="polite"
+              className="gradient-text inline-block italic"
+              style={{
+                opacity: leaving ? 0 : 1,
+                transform: leaving ? "translateY(12px)" : "translateY(0)",
+                transition: "opacity 350ms ease-out, transform 350ms ease-out",
+              }}
             >
-              <span
-                className="transition-all duration-[350ms] ease-out"
-                style={{
-                  opacity: leaving ? 0 : 1,
-                  transform: leaving ? "translateY(12px)" : "translateY(0)",
-                  display: "inline-block",
-                }}
-              >
-                {phrase}
-              </span>
+              {phrase}
             </span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
