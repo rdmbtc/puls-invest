@@ -60,7 +60,10 @@ const gatewayAbi = [
 
 export const publicClient = createPublicClient({
   chain: arcTestnet,
-  transport: http(),
+  // Route reads/receipts through the backend RPC proxy (private node with
+  // failover) — the public rpc.testnet.arc.network rate-limits (429) and
+  // breaks waitForTransactionReceipt polling.
+  transport: http(`${API_BASE}/api/rpc-proxy`),
 });
 
 export function hasInjectedWallet(): boolean {
@@ -161,7 +164,10 @@ export async function depositToGateway(
       functionName: "approve",
       args: [GATEWAY_WALLET, amountMicro],
     });
-    await publicClient.waitForTransactionReceipt({ hash: approvalTx });
+    await publicClient.waitForTransactionReceipt({
+      hash: approvalTx,
+      pollingInterval: 3000,
+    });
   }
   const depositTx = await client.writeContract({
     address: GATEWAY_WALLET,
@@ -170,7 +176,10 @@ export async function depositToGateway(
     args: [USDC, amountMicro],
     gas: 120000n,
   });
-  await publicClient.waitForTransactionReceipt({ hash: depositTx });
+  await publicClient.waitForTransactionReceipt({
+    hash: depositTx,
+    pollingInterval: 3000,
+  });
   return { approvalTx, depositTx };
 }
 
