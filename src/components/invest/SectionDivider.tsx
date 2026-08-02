@@ -6,8 +6,7 @@ export function SectionDivider() {
       <div
         className="h-[1.5px] w-24 rounded-full"
         style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(244,114,182,.45), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(244,114,182,.45), transparent)",
         }}
       />
     </div>

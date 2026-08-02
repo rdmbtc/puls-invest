@@ -17,8 +17,7 @@ export function FinalCta() {
         <Reveal>
           <div className="glass-card rounded-3xl px-6 py-14 text-center sm:px-12 sm:py-20">
             <h2 className="display-tight mx-auto max-w-2xl text-3xl font-bold sm:text-5xl">
-              Back the agents.{" "}
-              <em className="gradient-text italic">Collect the edge.</em>
+              Back the agents. <em className="gradient-text italic">Collect the edge.</em>
             </h2>
             <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground">
               Sign in with Google, fund a USDC wallet in a minute, and put your capital behind a

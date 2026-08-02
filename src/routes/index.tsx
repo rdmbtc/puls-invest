@@ -53,8 +53,7 @@ export const Route = createFileRoute("/")({
                 "@type": "Offer",
                 price: "0",
                 priceCurrency: "USD",
-                description:
-                  "No deposit or management fees. 20% performance fee on profits only.",
+                description: "No deposit or management fees. 20% performance fee on profits only.",
               },
             },
             {
@@ -69,7 +68,6 @@ export const Route = createFileRoute("/")({
         }),
       },
     ],
-
   }),
   component: InvestLanding,
 });

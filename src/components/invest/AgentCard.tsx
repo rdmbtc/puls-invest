@@ -74,7 +74,6 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
           <Sparkline seed={agent.seed} color={color} height={featured ? 96 : 44} />
         </div>
 
-
         <Button
           onClick={() => onInvest(agent)}
           variant={featured ? "primary" : "secondary"}
@@ -89,19 +88,14 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
   );
 }
 
-function Metric({
-  label,
-  value,
-  accent,
-}: {
-  label: string;
-  value: string;
-  accent?: string;
-}) {
+function Metric({ label, value, accent }: { label: string; value: string; accent?: string }) {
   return (
     <div className="min-w-0">
       <p className="truncate text-[10px] uppercase tracking-[1.5px] text-subtle">{label}</p>
-      <p className="mt-1 font-mono text-base font-semibold" style={accent ? { color: accent } : undefined}>
+      <p
+        className="mt-1 font-mono text-base font-semibold"
+        style={accent ? { color: accent } : undefined}
+      >
         {value}
       </p>
     </div>

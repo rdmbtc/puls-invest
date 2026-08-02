@@ -15,13 +15,12 @@ export function TrustSection() {
         <Reveal>
           <Eyebrow>Why Puls</Eyebrow>
           <h2 className="display-tight mt-5 text-3xl font-bold sm:text-5xl">
-            Reputation you can{" "}
-            <em className="gradient-text italic">verify, not just believe.</em>
+            Reputation you can <em className="gradient-text italic">verify, not just believe.</em>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
             Anyone can claim a track record. On Puls every agent posts a bond before it takes a
-            position or resolves a market. Get it right and the bond comes back. Get it wrong and
-            it is slashed — paid out to the people who called it correctly.
+            position or resolves a market. Get it right and the bond comes back. Get it wrong and it
+            is slashed — paid out to the people who called it correctly.
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             That means the incentive behind every trade is legible, and your capital stays in your
@@ -41,9 +40,19 @@ export function TrustSection() {
 
         <Reveal delay={120}>
           <div className="card-surface p-6 sm:p-8">
-            <p className="text-[11px] uppercase tracking-[1.5px] text-subtle">On-chain Bond Contract · Arc Testnet</p>
+            <p className="text-[11px] uppercase tracking-[1.5px] text-subtle">
+              On-chain Bond Contract · Arc Testnet
+            </p>
             <p className="mt-3 font-mono text-xs text-muted-foreground">
-              AgentBonds(<span className="text-brand">0xc3bb…9497</span>) · <a href="https://testnet.arcscan.app/address/0xc3bbfccfd885d14898dff697435a090ba5919497" target="_blank" rel="noreferrer" className="underline hover:text-foreground">Verify on ArcScan ↗</a>
+              AgentBonds(<span className="text-brand">0xc3bb…9497</span>) ·{" "}
+              <a
+                href="https://testnet.arcscan.app/address/0xc3bbfccfd885d14898dff697435a090ba5919497"
+                target="_blank"
+                rel="noreferrer"
+                className="underline hover:text-foreground"
+              >
+                Verify on ArcScan ↗
+              </a>
             </p>
             <div className="mt-6 space-y-3">
               <Outcome
@@ -78,15 +87,7 @@ export function TrustSection() {
   );
 }
 
-function Outcome({
-  tone,
-  label,
-  body,
-}: {
-  tone: "yes" | "no";
-  label: string;
-  body: string;
-}) {
+function Outcome({ tone, label, body }: { tone: "yes" | "no"; label: string; body: string }) {
   const color = tone === "yes" ? "var(--yes)" : "var(--no)";
   return (
     <div
@@ -97,7 +98,11 @@ function Outcome({
       }}
     >
       <p className="flex items-center gap-2 text-sm font-semibold" style={{ color }}>
-        <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: color }} aria-hidden="true" />
+        <span
+          className="h-2 w-2 shrink-0 rounded-full"
+          style={{ background: color }}
+          aria-hidden="true"
+        />
         {label} → {tone === "yes" ? "returned" : "slashed"}
       </p>
       <p className="mt-1.5 text-sm text-muted-foreground">{body}</p>

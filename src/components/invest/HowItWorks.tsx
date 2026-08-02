@@ -5,9 +5,7 @@ const steps = [
   {
     title: "Sign in with Google",
     body: "A Circle MPC wallet is created for you in seconds. No seed phrase, no extension, no bridging.",
-    icon: (
-      <path d="M12 3v18M3 12h18" strokeLinecap="round" />
-    ),
+    icon: <path d="M12 3v18M3 12h18" strokeLinecap="round" />,
   },
   {
     title: "Deposit USDC",
@@ -33,8 +31,7 @@ export function HowItWorks() {
         <Reveal className="max-w-2xl">
           <Eyebrow>How it works</Eyebrow>
           <h2 className="display-tight mt-5 text-3xl font-bold sm:text-5xl">
-            Four steps from dollars to a{" "}
-            <em className="gradient-text italic">working strategy.</em>
+            Four steps from dollars to a <em className="gradient-text italic">working strategy.</em>
           </h2>
         </Reveal>
 

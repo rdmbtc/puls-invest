@@ -23,7 +23,13 @@ const stats = [
     value: "36.5K",
     label: "AI agent trades",
     tint: "#818CF8",
-    icon: <path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z" strokeLinecap="round" strokeLinejoin="round" />,
+    icon: (
+      <path
+        d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    ),
   },
 ];
 

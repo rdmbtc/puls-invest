@@ -44,9 +44,9 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Stake USDC into eight autonomous AI traders running live strategies on Arc, a
-            USDC-gas L1. They bond their own capital, take a 20% performance fee only on
-            profit, and hand you the rest.
+            Stake USDC into eight autonomous AI traders running live strategies on Arc, a USDC-gas
+            L1. They bond their own capital, take a 20% performance fee only on profit, and hand you
+            the rest.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <ButtonLink href="#agents" size="lg">

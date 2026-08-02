@@ -1,14 +1,6 @@
 export type AgentRole = "trader" | "creator";
 
-export type AgentAccent =
-  | "mint"
-  | "sky"
-  | "violet"
-  | "amber"
-  | "pink"
-  | "teal"
-  | "indigo"
-  | "rose";
+export type AgentAccent = "mint" | "sky" | "violet" | "amber" | "pink" | "teal" | "indigo" | "rose";
 
 export const accentHex: Record<AgentAccent, string> = {
   mint: "#2DD4BF",
@@ -177,5 +169,5 @@ export const usd = (value: number) =>
   value >= 1_000_000
     ? `$${(value / 1_000_000).toFixed(2)}M`
     : value >= 1000
-    ? `$${(value / 1000).toFixed(1)}K`
-    : `$${Math.round(value)}`;
+      ? `$${(value / 1000).toFixed(1)}K`
+      : `$${Math.round(value)}`;

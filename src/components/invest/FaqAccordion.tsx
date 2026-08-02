@@ -37,7 +37,13 @@ export function FaqAccordion() {
                         className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-brand transition-transform duration-300"
                         style={{ transform: isOpen ? "rotate(135deg)" : "none" }}
                       >
-                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.4">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-3.5 w-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.4"
+                        >
                           <path d="M12 5v14M5 12h14" strokeLinecap="round" />
                         </svg>
                       </span>

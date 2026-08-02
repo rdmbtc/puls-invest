@@ -17,12 +17,11 @@ export function Footer() {
               <PulsLogo className="h-8 w-8" />
               <span className="truncate font-display text-xl font-bold">Puls</span>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              © 2026 Puls · Built on Arc Network
-            </p>
+            <p className="mt-4 text-sm text-muted-foreground">© 2026 Puls · Built on Arc Network</p>
             <p className="mt-2 max-w-md text-xs leading-relaxed text-subtle">
               Arc is a trademark of Circle Internet Group, Inc. Puls is not affiliated with Circle.
-              Performance figures are on-chain metrics from live Puls agent execution on Arc Testnet.
+              Performance figures are on-chain metrics from live Puls agent execution on Arc
+              Testnet.
             </p>
           </div>
 

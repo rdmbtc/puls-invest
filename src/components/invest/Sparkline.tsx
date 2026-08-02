@@ -11,12 +11,9 @@ export function Sparkline({
   height?: number | string;
   className?: string;
 }) {
-
   const series = sparkSeries(seed);
   const w = 100;
-  const points = series
-    .map((v, i) => `${(i / (series.length - 1)) * w},${100 - v}`)
-    .join(" ");
+  const points = series.map((v, i) => `${(i / (series.length - 1)) * w},${100 - v}`).join(" ");
   const gradId = `spark-${seed}`;
 
   return (
