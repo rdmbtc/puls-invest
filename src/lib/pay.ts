@@ -287,6 +287,43 @@ export async function payInvest(
     },
   });
 
+  // MetaMask signs with the currently selected account. If the user switched
+  // accounts after connecting, the recovered address won't match `from` and
+  // Gateway rejects the payment — fail fast with a clear message instead.
+  const signedBy = await publicClient.verifyTypedData({
+    address,
+    domain: {
+      name: "GatewayWalletBatched",
+      version: "1",
+      chainId: arcTestnet.id,
+      verifyingContract: option.extra.verifyingContract as Address,
+    },
+    types: {
+      TransferWithAuthorization: [
+        { name: "from", type: "address" },
+        { name: "to", type: "address" },
+        { name: "value", type: "uint256" },
+        { name: "validAfter", type: "uint256" },
+        { name: "validBefore", type: "uint256" },
+        { name: "nonce", type: "bytes32" },
+      ],
+    },
+    primaryType: "TransferWithAuthorization",
+    message: {
+      from: address,
+      to: option.payTo as Address,
+      value: BigInt(option.amount),
+      validAfter: BigInt(authorization.validAfter),
+      validBefore: BigInt(authorization.validBefore),
+      nonce: authorization.nonce,
+    },
+    signature,
+  });
+  if (!signedBy)
+    throw new Error(
+      "Wallet signed with a different account — select the connected account and retry",
+    );
+
   const paymentHeader = b64encode(
     JSON.stringify({
       x402Version: paymentRequired.x402Version ?? 2,
@@ -298,7 +335,9 @@ export async function payInvest(
 
   const paid = await fetch(url, { headers: { "Payment-Signature": paymentHeader } });
   const body = await paid.json().catch(() => ({}));
-  if (!paid.ok)
-    throw new Error((body as { error?: string }).error ?? `Payment failed (${paid.status})`);
+  if (!paid.ok) {
+    const b = body as { error?: string; reason?: string };
+    throw new Error(b.reason ? `${b.error} (${b.reason})` : b.error ?? `Payment failed (${paid.status})`);
+  }
   return { data: body, amountMicro: BigInt(option.amount), payTo: option.payTo };
 }
