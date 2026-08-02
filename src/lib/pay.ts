@@ -156,6 +156,9 @@ export async function depositToGateway(
     functionName: "allowance",
     args: [address, GATEWAY_WALLET],
   });
+  // Explicit nonce from the chain: MetaMask's local nonce tracker can go
+  // stale (e.g. after retried txs) and send "nonce too low" rejects.
+  const chainNonce = await publicClient.getTransactionCount({ address, blockTag: "pending" });
   let approvalTx: Hex | undefined;
   if (allowance < amountMicro) {
     approvalTx = await client.writeContract({
@@ -163,6 +166,7 @@ export async function depositToGateway(
       abi: erc20Abi,
       functionName: "approve",
       args: [GATEWAY_WALLET, amountMicro],
+      nonce: chainNonce,
     });
     await publicClient.waitForTransactionReceipt({
       hash: approvalTx,
@@ -175,6 +179,7 @@ export async function depositToGateway(
     functionName: "deposit",
     args: [USDC, amountMicro],
     gas: 120000n,
+    nonce: chainNonce + (allowance < amountMicro ? 1 : 0),
   });
   await publicClient.waitForTransactionReceipt({
     hash: depositTx,
