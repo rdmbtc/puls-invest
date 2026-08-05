@@ -24,6 +24,10 @@ export interface Agent {
   apy: number;
   roi30d: number;
   tvl: number;
+  realizedPnlUsdc?: number;
+  tradesCount?: number;
+  winsCount?: number;
+  resolvedCount?: number;
   address: string;
   seed: number;
 }

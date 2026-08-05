@@ -3,6 +3,12 @@ import { accentHex, usd, type Agent } from "@/lib/agents";
 import { Sparkline } from "./Sparkline";
 import { Button } from "./ui/Button";
 
+function signedUsd(v?: number): string {
+  if (v === undefined || Number.isNaN(v)) return "n/a";
+  const sign = v > 0 ? "+" : "";
+  return `${sign}${usd(v)}`;
+}
+
 interface Props {
   agent: Agent;
   featured?: boolean;
@@ -64,18 +70,22 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
         )}
 
         <div className={`grid gap-4 ${featured ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2"}`}>
-          <Metric label="Win rate" value={`${agent.winRate.toFixed(1)}%`} />
           <Metric
-            label="Est. APY"
-            value={agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`}
-            accent={color}
+            label="Realized PnL"
+            value={signedUsd(agent.realizedPnlUsdc)}
+            accent={(agent.realizedPnlUsdc ?? 0) >= 0 ? "#2DD4BF" : "#FB7185"}
           />
+          <Metric label="Win rate" value={`${agent.winRate.toFixed(1)}%`} />
           <Metric
             label="30d ROI"
             value={agent.roi30d <= 0 ? `${agent.roi30d.toFixed(1)}%` : `+${agent.roi30d.toFixed(1)}%`}
-            accent={agent.roi30d > 0 ? "#2DD4BF" : undefined}
+            accent={agent.roi30d > 0 ? "#2DD4BF" : "#FB7185"}
           />
-          <Metric label="TVL" value={usd(agent.tvl)} />
+          <Metric
+            label="Est. APY (30d)"
+            value={agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`}
+            accent={agent.apy > 0 ? "#2DD4BF" : "#FB7185"}
+          />
         </div>
 
         <div className="min-h-[44px]">

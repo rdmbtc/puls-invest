@@ -31,8 +31,13 @@ function mergeLive(staticAgent: Agent, live?: AgentCard): Agent {
       ? `${live.address.slice(0, 6)}…${live.address.slice(-4)}`
       : staticAgent.address,
     apy: live.apyEstimatePct,
-    roi30d: live.pool > 0 ? Math.max(-99, (live.netUsdc / live.pool) * 100) : 0,
+    roi30d: live.roi30dPct,
+    winRate: live.winRatePct ?? staticAgent.winRate,
     tvl: live.tvlUsdc,
+    realizedPnlUsdc: live.realizedPnlUsdc,
+    tradesCount: live.tradesCount,
+    winsCount: live.winsCount,
+    resolvedCount: live.resolvedCount,
   };
 }
 

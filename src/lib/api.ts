@@ -12,6 +12,14 @@ export interface AgentCard {
   invested: number;
   pool: number;
   tvlUsdc: number;
+  realizedPnlUsdc: number;
+  pnl30dUsdc: number;
+  roi30dPct: number;
+  winRatePct: number;
+  tradesCount: number;
+  volumeUsdc: number;
+  resolvedCount: number;
+  winsCount: number;
   netUsdc: number;
   isProfitable: boolean;
   apyEstimatePct: number;
