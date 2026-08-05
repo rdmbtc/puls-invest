@@ -38,9 +38,9 @@ export function HowItWorks() {
         <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <Reveal as="li" key={step.title} delay={i * 90} className="relative list-none">
-              <div className="card-surface h-full p-6 transition-transform duration-300 hover:-translate-y-[3px]">
+              <div className="card-surface sheen relative h-full overflow-hidden p-6 transition-all duration-500 hover:-translate-y-[4px] hover:border-[color-mix(in_oklab,var(--brand)_35%,var(--border))]">
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl pulse-gradient">
+                  <span className="pulse-gradient grid h-10 w-10 shrink-0 place-items-center rounded-xl shadow-[0_8px_24px_-8px_rgba(246,95,169,.7)]">
                     <svg
                       viewBox="0 0 24 24"
                       className="h-5 w-5"
@@ -62,10 +62,12 @@ export function HowItWorks() {
               {i < steps.length - 1 && (
                 <span
                   aria-hidden="true"
-                  className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-subtle lg:block"
-                >
-                  →
-                </span>
+                  className="absolute -right-5 top-1/2 hidden h-px w-5 -translate-y-1/2 lg:block"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, color-mix(in oklab, var(--brand) 55%, transparent), transparent)",
+                  }}
+                />
               )}
             </Reveal>
           ))}

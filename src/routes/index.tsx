@@ -4,6 +4,7 @@ import { AuroraBackground } from "@/components/invest/AuroraBackground";
 import { Navbar } from "@/components/invest/Navbar";
 import { ScrollProgress } from "@/components/invest/ScrollProgress";
 import { Hero } from "@/components/invest/Hero";
+import { LiveTicker } from "@/components/invest/LiveTicker";
 import { TrustStrip } from "@/components/invest/TrustStrip";
 import { HowItWorks } from "@/components/invest/HowItWorks";
 import { AgentBentoGrid } from "@/components/invest/AgentBentoGrid";
@@ -86,6 +87,7 @@ function InvestLanding() {
       </noscript>
       <main>
         <Hero />
+        <LiveTicker />
         <TrustStrip />
         <HowItWorks />
         <SectionDivider />

@@ -21,7 +21,13 @@ export function FaqAccordion() {
             const isOpen = open === i;
             return (
               <Reveal key={item.q} delay={i * 50}>
-                <div className="card-surface overflow-hidden">
+                <div
+                  className={`card-surface overflow-hidden transition-colors duration-300 ${
+                    isOpen
+                      ? "border-[color-mix(in_oklab,var(--brand)_35%,var(--border))]"
+                      : "hover:border-[color-mix(in_oklab,var(--brand)_20%,var(--border))]"
+                  }`}
+                >
                   <h3>
                     <button
                       type="button"
@@ -29,13 +35,21 @@ export function FaqAccordion() {
                       aria-expanded={isOpen}
                       aria-controls={`faq-panel-${i}`}
                       id={`faq-button-${i}`}
-                      className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 text-left sm:px-6"
+                      className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-white/[0.02] sm:px-6"
                     >
                       <span className="min-w-0 text-base font-semibold">{item.q}</span>
                       <span
                         aria-hidden="true"
-                        className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-brand transition-transform duration-300"
-                        style={{ transform: isOpen ? "rotate(135deg)" : "none" }}
+                        className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-brand transition-all duration-300"
+                        style={{
+                          transform: isOpen ? "rotate(135deg)" : "none",
+                          borderColor: isOpen
+                            ? "color-mix(in oklab, var(--brand) 55%, transparent)"
+                            : undefined,
+                          background: isOpen
+                            ? "color-mix(in oklab, var(--brand) 12%, transparent)"
+                            : undefined,
+                        }}
                       >
                         <svg
                           viewBox="0 0 24 24"

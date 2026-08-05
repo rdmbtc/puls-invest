@@ -28,15 +28,16 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
     <div
       onMouseMove={onMove}
       style={{ ["--card-accent" as string]: color }}
-      className="spotlight gradient-ring card-surface group relative flex h-full flex-col overflow-hidden p-5 transition-transform duration-300 hover:-translate-y-[3px] sm:p-6"
+      className="spotlight gradient-ring card-surface group relative flex h-full flex-col overflow-hidden p-5 transition-all duration-500 hover:-translate-y-[5px] hover:shadow-[0_28px_70px_-30px_color-mix(in_oklab,var(--card-accent)_45%,transparent)] sm:p-6"
     >
       <div className="relative z-10 flex min-h-0 flex-1 min-w-0 flex-col gap-5">
         <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3">
           <span
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl text-lg"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl text-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-6deg]"
             style={{
               background: `color-mix(in oklab, ${color} 18%, transparent)`,
               border: `1px solid color-mix(in oklab, ${color} 45%, transparent)`,
+              boxShadow: `0 0 24px -6px color-mix(in oklab, ${color} 55%, transparent)`,
               color,
             }}
             aria-hidden="true"
@@ -69,7 +70,9 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
           <p className="text-sm leading-relaxed text-muted-foreground">{agent.strategy}</p>
         )}
 
-        <div className={`grid gap-4 ${featured ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2"}`}>
+        <div
+          className={`grid gap-4 rounded-2xl border border-white/[0.04] bg-black/20 p-4 ${featured ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2"}`}
+        >
           <Metric
             label="Realized PnL"
             value={signedUsd(agent.realizedPnlUsdc)}
@@ -78,12 +81,14 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
           <Metric label="Win rate" value={`${agent.winRate.toFixed(1)}%`} />
           <Metric
             label="30d ROI"
-            value={agent.roi30d <= 0 ? `${agent.roi30d.toFixed(1)}%` : `+${agent.roi30d.toFixed(1)}%`}
+            value={
+              agent.roi30d <= 0 ? `${agent.roi30d.toFixed(1)}%` : `+${agent.roi30d.toFixed(1)}%`
+            }
             accent={agent.roi30d > 0 ? "#2DD4BF" : "#FB7185"}
           />
           <Metric
             label="Est. APY (30d)"
-            value={agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`}
+            value={agent.apy <= -999 || agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`}
             accent={agent.apy > 0 ? "#2DD4BF" : "#FB7185"}
           />
         </div>
@@ -111,8 +116,15 @@ function Metric({ label, value, accent }: { label: string; value: string; accent
     <div className="min-w-0">
       <p className="truncate text-[10px] uppercase tracking-[1.5px] text-subtle">{label}</p>
       <p
-        className="mt-1 font-mono text-base font-semibold"
-        style={accent ? { color: accent } : undefined}
+        className="mt-1 font-mono text-base font-semibold tabular-nums"
+        style={
+          accent
+            ? {
+                color: accent,
+                textShadow: `0 0 20px color-mix(in oklab, ${accent} 35%, transparent)`,
+              }
+            : undefined
+        }
       >
         {value}
       </p>

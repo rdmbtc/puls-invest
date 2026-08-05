@@ -287,7 +287,7 @@ export function InvestModal({ agent, onClose }: { agent: Agent | null; onClose: 
             >
               Amount (USDC)
             </label>
-            <div className="mt-2 flex items-center gap-2 rounded-2xl border border-border bg-[rgba(10,14,26,.6)] px-4 py-3">
+            <div className="mt-2 flex items-center gap-2 rounded-2xl border border-border bg-[rgba(10,14,26,.6)] px-4 py-3 transition-all duration-300 focus-within:border-[color-mix(in_oklab,var(--brand)_55%,transparent)] focus-within:shadow-[0_0_0_4px_color-mix(in_oklab,var(--brand)_12%,transparent)]">
               <span className="font-mono text-sm text-subtle">$</span>
               <input
                 id="usdc-amount"
@@ -301,16 +301,24 @@ export function InvestModal({ agent, onClose }: { agent: Agent | null; onClose: 
               <span className="shrink-0 font-mono text-xs text-subtle">USDC</span>
             </div>
             <div className="mt-3 flex gap-2">
-              {quickAmounts.map((q) => (
-                <button
-                  key={q}
-                  type="button"
-                  onClick={() => setAmount(String(q))}
-                  className="flex-1 rounded-full border border-border bg-surface py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-brand hover:text-foreground"
-                >
-                  ${q}
-                </button>
-              ))}
+              {quickAmounts.map((q) => {
+                const isActive = amount === String(q);
+                return (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => setAmount(String(q))}
+                    aria-pressed={isActive}
+                    className={`flex-1 rounded-full border py-2 font-mono text-xs transition-all duration-200 hover:-translate-y-px ${
+                      isActive
+                        ? "border-brand bg-[color-mix(in_oklab,var(--brand)_15%,transparent)] text-foreground"
+                        : "border-border bg-surface text-muted-foreground hover:border-brand hover:text-foreground"
+                    }`}
+                  >
+                    ${q}
+                  </button>
+                );
+              })}
             </div>
 
             {wallet && (
@@ -326,15 +334,16 @@ export function InvestModal({ agent, onClose }: { agent: Agent | null; onClose: 
             >
               <Row
                 label={`Est. annual yield (${apyLabel} est. APY)`}
-                value={hasProfit ? `$${projected.toFixed(2)}` : apy < 0 ? `−${Math.abs(projected).toFixed(2)}` : "$0.00"}
+                value={
+                  hasProfit
+                    ? `$${projected.toFixed(2)}`
+                    : apy < 0
+                      ? `−${Math.abs(projected).toFixed(2)}`
+                      : "$0.00"
+                }
               />
               <Row label="Agent performance fee (20%)" value={`−$${fee.toFixed(2)}`} />
-              <Row
-                label="Your share"
-                value={`$${share.toFixed(2)}`}
-                strong
-                accent={color}
-              />
+              <Row label="Your share" value={`$${share.toFixed(2)}`} strong accent={color} />
               {!hasProfit && (
                 <p className="text-[11px] text-subtle">
                   {apy < 0

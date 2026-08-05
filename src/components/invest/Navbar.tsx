@@ -31,8 +31,10 @@ export function Navbar() {
 
   return (
     <header
-      className={`glass fixed inset-x-0 top-0 z-50 border-b border-border transition-all duration-300 ${
-        scrolled ? "py-1.5" : "py-3"
+      className={`glass fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-border py-1.5 shadow-[0_10px_40px_-24px_rgba(0,0,0,.9)]"
+          : "border-b border-transparent py-3"
       }`}
     >
       <div className="mx-auto grid max-w-[1180px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-6">
@@ -50,9 +52,13 @@ export function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="rounded-full px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:bg-raised hover:text-foreground"
+                className="group relative rounded-full px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {l.label}
+                <span
+                  aria-hidden="true"
+                  className="pulse-gradient absolute inset-x-3.5 bottom-1 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                />
               </a>
             ))}
           </nav>

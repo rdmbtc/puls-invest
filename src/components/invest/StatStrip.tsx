@@ -10,8 +10,8 @@ interface Stat {
 }
 
 const defaultStats: Stat[] = [
-  { label: "On-chain trades", value: 42289, decimals: 0 },
-  { label: "Total volume", value: 14.35, prefix: "$", suffix: "K", decimals: 2 },
+  { label: "On-chain trades", value: 53544, decimals: 0 },
+  { label: "Total volume", value: 23.0, prefix: "$", suffix: "K", decimals: 2 },
   { label: "Markets deployed", value: 1988, decimals: 0 },
   { label: "Live AI agents", value: 8, decimals: 0 },
 ];
@@ -40,7 +40,7 @@ function CountUp({ stat, active }: { stat: Stat; active: boolean }) {
   }, [active, reduced, stat.value]);
 
   return (
-    <span className="font-display text-3xl font-bold tracking-[-1px] sm:text-4xl">
+    <span className="gradient-text font-display text-3xl font-bold tracking-[-1px] tabular-nums sm:text-4xl">
       {stat.prefix}
       {value.toLocaleString("en-US", {
         minimumFractionDigits: stat.decimals ?? 0,
@@ -93,10 +93,15 @@ export function StatStrip() {
     <Reveal delay={160}>
       <div
         ref={ref}
-        className="card-surface grid grid-cols-2 gap-x-4 gap-y-6 p-6 sm:p-8 lg:grid-cols-4"
+        className="card-surface sheen relative grid grid-cols-2 gap-x-4 gap-y-6 overflow-hidden p-6 sm:p-8 lg:grid-cols-4"
       >
-        {stats.map((stat) => (
-          <div key={stat.label} className="flex min-h-[76px] min-w-0 flex-col justify-center gap-1">
+        {stats.map((stat, i) => (
+          <div
+            key={stat.label}
+            className={`flex min-h-[76px] min-w-0 flex-col justify-center gap-1 ${
+              i > 0 ? "lg:border-l lg:border-white/[0.06] lg:pl-6" : ""
+            }`}
+          >
             <CountUp stat={stat} active={active} />
             <span className="truncate text-[11px] uppercase tracking-[1.5px] text-subtle">
               {stat.label}

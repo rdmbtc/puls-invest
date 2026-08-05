@@ -30,7 +30,7 @@ export function TrustSection() {
             {pills.map((p) => (
               <li
                 key={p}
-                className="rounded-full border border-border bg-surface px-3.5 py-2 text-xs text-muted-foreground"
+                className="rounded-full border border-border bg-surface px-3.5 py-2 text-xs text-muted-foreground transition-all duration-300 hover:-translate-y-px hover:border-[color-mix(in_oklab,var(--brand)_45%,transparent)] hover:text-foreground"
               >
                 {p}
               </li>

@@ -337,7 +337,9 @@ export async function payInvest(
   const body = await paid.json().catch(() => ({}));
   if (!paid.ok) {
     const b = body as { error?: string; reason?: string };
-    throw new Error(b.reason ? `${b.error} (${b.reason})` : b.error ?? `Payment failed (${paid.status})`);
+    throw new Error(
+      b.reason ? `${b.error} (${b.reason})` : (b.error ?? `Payment failed (${paid.status})`),
+    );
   }
   return { data: body, amountMicro: BigInt(option.amount), payTo: option.payTo };
 }
