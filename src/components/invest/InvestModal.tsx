@@ -90,12 +90,12 @@ export function InvestModal({ agent, onClose }: { agent: Agent | null; onClose: 
   }, [agent, onClose]);
 
   const parsed = Math.max(0, Number(amount) || 0);
-  const apy = agent.apy;
+  const apy = agent?.apy ?? 0;
   const hasProfit = apy > 0;
   const projected = useMemo(() => (agent ? (parsed * agent.apy) / 100 : 0), [parsed, agent]);
   const fee = hasProfit ? projected * 0.2 : 0;
   const share = hasProfit ? projected - fee : 0;
-  const apyLabel = agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`;
+  const apyLabel = apy === 0 ? "n/a" : `${apy.toFixed(1)}%`;
 
   const refreshBalances = useCallback(async (address: string) => {
     try {
