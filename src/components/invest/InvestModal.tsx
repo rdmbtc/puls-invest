@@ -90,8 +90,12 @@ export function InvestModal({ agent, onClose }: { agent: Agent | null; onClose: 
   }, [agent, onClose]);
 
   const parsed = Math.max(0, Number(amount) || 0);
+  const apy = agent.apy;
+  const hasProfit = apy > 0;
   const projected = useMemo(() => (agent ? (parsed * agent.apy) / 100 : 0), [parsed, agent]);
-  const fee = projected * 0.2;
+  const fee = hasProfit ? projected * 0.2 : 0;
+  const share = hasProfit ? projected - fee : 0;
+  const apyLabel = agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`;
 
   const refreshBalances = useCallback(async (address: string) => {
     try {
@@ -321,16 +325,23 @@ export function InvestModal({ agent, onClose }: { agent: Agent | null; onClose: 
               className="mt-6 space-y-2.5 rounded-2xl border border-border bg-[rgba(10,14,26,.45)] p-4 text-sm"
             >
               <Row
-                label={`Est. annual yield (${agent.apy.toFixed(1)}% est. APY)`}
-                value={`$${projected.toFixed(2)}`}
+                label={`Est. annual yield (${apyLabel} est. APY)`}
+                value={hasProfit ? `$${projected.toFixed(2)}` : apy < 0 ? `−${Math.abs(projected).toFixed(2)}` : "$0.00"}
               />
               <Row label="Agent performance fee (20%)" value={`−$${fee.toFixed(2)}`} />
               <Row
                 label="Your share"
-                value={`$${(projected - fee).toFixed(2)}`}
+                value={`$${share.toFixed(2)}`}
                 strong
                 accent={color}
               />
+              {!hasProfit && (
+                <p className="text-[11px] text-subtle">
+                  {apy < 0
+                    ? "Agent is currently net-negative — no fee is charged, losses reduce principal."
+                    : "No profit yet — the projection appears once the agent is net positive."}
+                </p>
+              )}
               <Row label="Network" value="Arc · gas in USDC" />
             </dl>
 

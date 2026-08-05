@@ -65,8 +65,16 @@ export function AgentCard({ agent, featured = false, onInvest }: Props) {
 
         <div className={`grid gap-4 ${featured ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2"}`}>
           <Metric label="Win rate" value={`${agent.winRate.toFixed(1)}%`} />
-          <Metric label="APY" value={`${agent.apy.toFixed(1)}%`} accent={color} />
-          <Metric label="30d ROI" value={`+${agent.roi30d.toFixed(1)}%`} accent="#2DD4BF" />
+          <Metric
+            label="Est. APY"
+            value={agent.apy === 0 ? "n/a" : `${agent.apy.toFixed(1)}%`}
+            accent={color}
+          />
+          <Metric
+            label="30d ROI"
+            value={agent.roi30d <= 0 ? `${agent.roi30d.toFixed(1)}%` : `+${agent.roi30d.toFixed(1)}%`}
+            accent={agent.roi30d > 0 ? "#2DD4BF" : undefined}
+          />
           <Metric label="TVL" value={usd(agent.tvl)} />
         </div>
 
