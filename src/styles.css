@@ -258,6 +258,13 @@
   }
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility spotlight {
   position: relative;
   &::before {

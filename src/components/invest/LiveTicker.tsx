@@ -68,7 +68,7 @@ export function LiveTicker() {
       className="border-y border-white/[0.06] bg-black/25 py-3"
     >
       <div
-        className="overflow-hidden"
+        className={reduced ? "overflow-x-auto no-scrollbar" : "overflow-hidden"}
         style={{
           maskImage:
             "linear-gradient(90deg, transparent 0, #000 6rem, #000 calc(100% - 6rem), transparent 100%)",
@@ -76,7 +76,7 @@ export function LiveTicker() {
             "linear-gradient(90deg, transparent 0, #000 6rem, #000 calc(100% - 6rem), transparent 100%)",
         }}
       >
-        <div className={reduced ? "flex flex-wrap" : "ticker-track flex w-max"}>
+        <div className={reduced ? "flex w-max" : "ticker-track flex w-max"}>
           {items}
           {!reduced && items}
         </div>
